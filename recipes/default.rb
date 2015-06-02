@@ -155,6 +155,31 @@ template '/etc/rundeck/profile' do
 	notifies :restart, 'service[rundeckd]'
 end
 
+# Rundeck tokens.properties file
+if node['rundeck']['enable_api_token']
+   require 'digest'
+   include_recipe 'openssl'
+   ::Chef::Recipe.send(:include, Opscode::OpenSSL::Password)
+   token = Digest::SHA256.hexdigest secure_password(length=64)
+   template '/etc/rundeck/tokens.properties' do
+	   source 'tokens.properties.erb'
+   	owner 'rundeck'
+	   group 'rundeck'
+   	mode 00640
+   	action :create
+      variables({
+              :token => token
+      })
+      not_if do ::File.exists?('/etc/rundeck/tokens.properties') end
+   	notifies :restart, 'service[rundeckd]'
+   end
+   ruby_block "dull" do
+      block do 
+         node.default.rundeck.admin.api_token = read_token("admin")
+         Chef::Log.error("THE TOKEN: " + node.rundeck.admin.api_token) 
+      end
+   end
+end
 # Stub files from the cookbook, override with chef-rewind
 node['rundeck']['stub_config_files'].each do |cf|
 	cookbook_file "/etc/rundeck/#{cf}" do

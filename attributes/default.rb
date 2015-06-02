@@ -39,6 +39,7 @@ default['rundeck']['log4j_port']        = 4435
 default['rundeck']['public_rss']        = false
 default['rundeck']['logging_level']     = 'INFO'
 default['rundeck']['partial_search']    = true
+default['rundeck']['enable_api_token']  = false
 
 # Authentication Configuration - Used to configure the profile file in /etc/rundeck when ldap or similar auth method
 default['rundeck']['authentication']['file']  = 'jaas-loginmodule.conf'
