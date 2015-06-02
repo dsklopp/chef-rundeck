@@ -20,6 +20,5 @@ def create_project
    request.add_field("Content-Type", "application/json")
    create_data = '{ "name": ' + new_resource.name + ', "config": {} }'
    request.body = create_data
-   Chef::Log.error(request.to_s)
 	response = http.request(request)
 end

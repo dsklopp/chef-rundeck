@@ -38,14 +38,8 @@ def create_job
   </job>
 </joblist>
    }
-   Chef::Log.error(request.to_s)
    request.set_form_data('xmlBatch' => formdata, 'dupeOption' => 'update')
 	response = http.request(request)
-   if job_exists?(token, new_resource.project, new_resource.name)
-           Chef::Log.error("The job exists")
-   else
-           Chef::Log.error("The JOB is not here")
-   end
 end
 
 def list_job(token, project)
