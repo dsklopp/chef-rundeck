@@ -9,4 +9,4 @@ attribute :description, :kind_of => String, :required => true
 attribute :scriptfile, :kind_of => String, :required => true
 attribute :scriptargs, :kind_of => String, :required => true
 
-#attr_accessor :exists
+attr_accessor :exists
