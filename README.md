@@ -283,6 +283,19 @@ Usage sample:
       url 'http://search.maven.org/remotecontent?filepath=com/hbakkum/rundeck/plugins/rundeck-hipchat-plugin/1.0.0/rundeck-hipchat-plugin-1.0.0.jar'
     end
 
+## project
+Create a project.  Requires default['rundeck']['enable_api_token'] be set to true.  Syntax is trivial for now, and all default options are used for its creation:
+
+```
+rundeck_project "myproject" do
+   name "myproject"
+   token lazy { node.rundeck.admin.api_token }
+end
+```
+
+For now it is imperative that lazy evaluation is done.  node.rundeck.admin.api_token will only be set if default['rundeck']['enable_api_token'] is true.
+
+
 Usage
 =====
 
