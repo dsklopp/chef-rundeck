@@ -12,7 +12,7 @@ end
 
 def create_job
    token = new_resource.token
-	uri = URI.parse("http://192.168.17.118:4440")
+	uri = URI.parse("http://#{node['rundeck']['hostname']}:#{node['rundeck']['port']}")
 	http = Net::HTTP.new(uri.host, uri.port)
 	http.use_ssl = false
 	request = Net::HTTP::Post.new("/api/1/jobs/import")
