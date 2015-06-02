@@ -165,6 +165,10 @@ framework.server.name = <%= node['rundeck']['hostname'] %>
 framework.server.port = <%= node['rundeck']['port'] %>
 framework.server.url = <%= node['rundeck']['url'] %>
 
+<% if node['rundeck']['enable_api_token'] %>
+rundeck.tokens.file = /etc/rundeck/tokens.properties
+<% end %>
+
 #
 # URL to Rundeck
 #
