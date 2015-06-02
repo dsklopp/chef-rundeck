@@ -18,6 +18,8 @@ depends           'supervisor'
 depends           'nginx'
 depends           'openresty'
 
+depends           'openssl'
+
 supports          'ubuntu', '>= 12.04'
 supports          'debian', '>= 6.0'
 supports          'centos', '>= 6.0'
